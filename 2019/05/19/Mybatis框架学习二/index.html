@@ -7,16 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>归档: 2019 - HiSHimmer的博客</title>
+<title>Mybatis框架学习二 - HiSHimmer的博客</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="HiSHimmer的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+    <meta name="description" content="mysql ：8.0 入门案例    读取配置文件   创建SqlSessionFactory工厂    创建工厂mybatis使用了构建者模式（把对象的创建细节隐藏，让使用者直接调用方法即可拿到对象）   使用工厂生产SqlSession对象   生产SqlSession使用了工厂模式（解耦，即降低类之间的依赖关系）   使用SqlSession创建接口的代理对象    session.getM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis框架学习二">
+<meta property="og:url" content="http://yoursite.com/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/index.html">
 <meta property="og:site_name" content="HiSHimmer的博客">
+<meta property="og:description" content="mysql ：8.0 入门案例    读取配置文件   创建SqlSessionFactory工厂    创建工厂mybatis使用了构建者模式（把对象的创建细节隐藏，让使用者直接调用方法即可拿到对象）   使用工厂生产SqlSession对象   生产SqlSession使用了工厂模式（解耦，即降低类之间的依赖关系）   使用SqlSession创建接口的代理对象    session.getM">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="article:published_time" content="2019-05-19T07:37:37.000Z">
+<meta property="article:modified_time" content="2020-02-21T08:05:41.973Z">
 <meta property="article:author" content="HiShimmer">
+<meta property="article:tag" content="Mybatis">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
@@ -76,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="HiSHimmer的博客" height="28">
+                <img src="/images/logo.svg" alt="Mybatis框架学习二" height="28">
             
             </a>
         </div>
@@ -126,60 +131,243 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-9-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
+<div class="card">
+    
+    <div class="card-content article ">
         
-            <article class="media">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time>
-                        <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习二</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time>
-                        <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习一</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 819 个字)
+                </span>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-16T06:36:47.000Z">2019-05-16</time>
-                        <a href="/2019/05/16/DataGrip%E8%BF%9E%E6%8E%A5Mysql%E9%94%99%E8%AF%AF%E4%B9%8B%E6%97%B6%E5%8C%BA%E9%94%99%E8%AF%AF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">DataGrip连接Mysql错误之时区错误</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
+                
+            </div>
         </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Mybatis框架学习二
+            
+        </h1>
+        <div class="content">
+            <p>mysql ：8.0</p>
+<h3><span id="入门案例">入门案例</span></h3>
+<blockquote>
+<ol>
+<li>
+<p>读取配置文件</p>
+</li>
+<li>
+<p>创建SqlSessionFactory工厂</p>
+</li>
+</ol>
+<ul>
+<li>创建工厂mybatis使用了构建者模式（把对象的创建细节隐藏，让使用者直接调用方法即可拿到对象）</li>
+</ul>
+<ol start="3">
+<li>使用工厂生产SqlSession对象</li>
+</ol>
+<ul>
+<li>生产SqlSession使用了工厂模式（解耦，即降低类之间的依赖关系）</li>
+</ul>
+<ol start="4">
+<li>使用SqlSession创建接口的代理对象</li>
+</ol>
+<ul>
+<li>
+<p>session.getMapper(Class<t> type);</t></p>
+</li>
+<li>
+<p>创建接口实现类使用了代理模式（不修改源码的基础上对已有方法增强）</p>
+</li>
+</ul>
+<ol start="5">
+<li>
+<p>使用代理对象执行方法</p>
+</li>
+<li>
+<p>释放资源</p>
+</li>
+</ol>
+<p>注意事项：不要忘记在映射配置中告诉mybatis要把数据封装到哪个实体类中（设定resultType的值为全类名）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">mybatis 入门案例</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 读取配置文件</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            InputStream in= Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//2. 创建SqlSessionFactory工厂</span></span><br><span class="line">            SqlSessionFactoryBuilder builder=<span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line">            SqlSessionFactory factory=builder.build(in);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//3. 使用工厂生产SqlSession对象</span></span><br><span class="line">            SqlSession session=factory.openSession();</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//4. 使用SqlSession创建接口的代理对象</span></span><br><span class="line">            UserRepository userRepository=session.getMapper(UserRepository<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//5. 使用代理对象执行方法</span></span><br><span class="line">            List&lt;User&gt; users=userRepository.findall();</span><br><span class="line">            <span class="keyword">for</span>(User user:users)&#123;</span><br><span class="line">                System.out.println(user);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//6. 释放资源</span></span><br><span class="line">            session.close();</span><br><span class="line">            in.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果：</p>
+<p><img src="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/result-test.png" alt></p>
+<h3><span id="使用注解">使用注解</span></h3>
+<ul>
+<li>
+<p>在repository中的接口方法前加上指定注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"select * from user"</span>)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">findall</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在sqlmapCongfig.xml中指定mapper 的class属性，指向注解的repository全限定类名</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用注解来配置,使用class属性指向注解的repository全限定类名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">"com.litao.repository.UserRepository"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3><span id="查询操作代码大致分析">查询操作代码大致分析</span></h3>
+<ul>
+<li>
+<p>读取配置文件</p>
+<blockquote>
+<p>解析xml ：dom4j</p>
+</blockquote>
+</li>
+<li>
+<p>selectList方法</p>
+<blockquote>
+<ol>
+<li>
+<p>根据配置文件的信息创建Connection对象（注册驱动，获取连接）</p>
+</li>
+<li>
+<p>获取预处理对象PreparedStatement</p>
+</li>
+</ol>
+<p>connection.preparedStatement(sql)</p>
+<ol start="3">
+<li>执行查询sql语句，返回ResultSet</li>
+</ol>
+<p>ResultSet resultSet =preparedStatement.executeQuery();</p>
+<ol start="4">
+<li>遍历结构集 resultSet 用于封装</li>
+</ol>
+<blockquote>
+<p>List <e> list =new ArrayList();</e></p>
+<p>while(resultSet.next(){</p>
+<p>E element =(E) Class.forName(“全限定类名”).newInstance ()（对应xml中的resultType）</p>
+<p>封装:把每个内容添加到element中，再把element加入到list中</p>
+<blockquote>
+<p>根据反射的方式来根据名称获取属性并赋值</p>
+</blockquote>
+<p>list.add(element);</p>
+<p>}</p>
+</blockquote>
+<ol start="5">
+<li>返回list</li>
+</ol>
+<p>return list；</p>
+</blockquote>
+</li>
+<li>
+<p>执行上述方法需要提供两个信息：</p>
+<ul>
+<li>连接信息（用来创建connection）</li>
+<li>映射信息：sql语句和封装结果的实体类全限定名（resultType），把这两个信息组合起来定义成一个对象（Map）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">String</th>
+<th style="text-align:center">Mapper（映射）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">com.litao.repository.UserRepository</td>
+<td style="text-align:center">String ClassPath</td>
+</tr>
+<tr>
+<td style="text-align:center">findall</td>
+<td style="text-align:center">string sql</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>根据接口的字节码创建代理对象</p>
+</li>
+</ul>
+<blockquote>
+<p>public <t> T getMapper(Class <t> type){</t></t></p>
+<p>/*</p>
+<p>类加载器：它使用的和被代理的对象是相同的类加载器</p>
+<p>代理对象要实现的接口：在被代理对象实现相同的接口</p>
+<p><strong>代理方式</strong>：它就是增强的方法，需要自己来提供。此处是InnvocationHandler的接口，需要写一个该接口的实现类，在实现类中调用selectList方法</p>
+<p>*/</p>
+<p>Proxy.newProxyInstance（类加载器，代理对象要实现的接口字节码数组，<strong>代理方式</strong>）</p>
+<p>}</p>
+<p>这个让我想到了Spring框架中的AOP（面向切面编程）中的代理方式</p>
+</blockquote>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Mybatis/" rel="tag">Mybatis</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Intellij IDEA 安装</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/">
+                <span class="level-item">Mybatis框架学习一</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
     </div>
 </div>
 
@@ -738,7 +926,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="HiSHimmer的博客" height="28">
+                    <img src="/images/logo.svg" alt="Mybatis框架学习二" height="28">
                 
                 </a>
                 <p class="is-size-7">
