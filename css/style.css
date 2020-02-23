@@ -533,23 +533,3 @@ figure.highlight .section {
 .gist .file {
   all: initial;
 }
-/*
-    新添加内容
-
-container 
- 		margin-left: 2rem;
-  		margin-right: 2rem;
-    @media screen and (min-width: screen-fullhd)
-        .is-3-column .container
-            max-width: 1600px
-            margin-left: 2rem;
-            margin-right: 2rem;
-        .is-2-column .container
-            max-width: screen-widescreen - 2 * gap
-            width: screen-widescreen - 2 * gap
-            margin-left: auto;
-            margin-right: auto;
-        .is-1-column .container
-            max-width: screen-desktop - 2 * gap
-            width: screen-desktop - 2 * gap
-*/
