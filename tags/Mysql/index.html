@@ -138,7 +138,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 319 个字)
+                    2 分钟 读完 (大约 320 个字)
                 </span>
                 
                 
@@ -153,47 +153,20 @@
         <div class="content">
             <p>操作系统: win 10</p>
 <p>Mysql 版本 : 8.0</p>
-<h3><span id="错误描述">错误描述</span></h3>
+<h3 id="错误描述">错误描述</h3>
 <p>在DataGrip中连接Mysql时，发生如下错误:</p>
 <p><img src="/2019/05/16/DataGrip%E8%BF%9E%E6%8E%A5Mysql%E9%94%99%E8%AF%AF%E4%B9%8B%E6%97%B6%E5%8C%BA%E9%94%99%E8%AF%AF/mysqlwrong.png" alt></p>
 <p>原因:在使用Mysql的6.0.x以上的jar的时候，需要指定serverTimezone,否则就会出现异常。</p>
-<h3><span id="解决方法">解决方法</span></h3>
-<ul>
-<li>方法一：命令行登录MySql修改Mysql 时区</li>
-</ul>
-<p><strong>这种方法不推荐，因为当Mysql服务重启的时候，被修改的时区时间会被重置，下次连接Mysql时问    题依然会存在。</strong></p>
-<blockquote>
-<ol>
-<li>配置Mysql环境变量</li>
-</ol>
-<p>编辑Path，加入Mysql的bin路径</p>
-<p><img src="/2019/05/16/DataGrip%E8%BF%9E%E6%8E%A5Mysql%E9%94%99%E8%AF%AF%E4%B9%8B%E6%97%B6%E5%8C%BA%E9%94%99%E8%AF%AF/a.png" alt></p>
-<ol start="2">
-<li>命令行登录Mysql</li>
-</ol>
-<p><code>mysql -u root -p '你的密码'</code></p>
-<ol start="3">
-<li>查看并修改时区</li>
-</ol>
-<p><code>show variables like ``'%time_zone%';</code></p>
-<p><img src="/2019/05/16/DataGrip%E8%BF%9E%E6%8E%A5Mysql%E9%94%99%E8%AF%AF%E4%B9%8B%E6%97%B6%E5%8C%BA%E9%94%99%E8%AF%AF/b.png" alt></p>
-<p>​	Mysql默认SYSTEM是美国时间，比我国晚8个小时</p>
-<p>​	<code>set global time_zone = ``'+8:00'``;</code></p>
-<p>​	修改后，重新用DataGrip重新连接，问题解决。</p>
-</blockquote>
-<ul>
-<li>方法二: 修改database配置中的serverTimezone</li>
-</ul>
-<blockquote>
-<img src="/2019/05/16/DataGrip%E8%BF%9E%E6%8E%A5Mysql%E9%94%99%E8%AF%AF%E4%B9%8B%E6%97%B6%E5%8C%BA%E9%94%99%E8%AF%AF/c.png" style="zoom:67%;">
-<p>设置serverTimezone 为UTC (世界协调时间)</p>
-<p>再次连接</p>
-<p><img src="/2019/05/16/DataGrip%E8%BF%9E%E6%8E%A5Mysql%E9%94%99%E8%AF%AF%E4%B9%8B%E6%97%B6%E5%8C%BA%E9%94%99%E8%AF%AF/d.png" alt></p>
-</blockquote>
-<p>使用IDEA内置的数据库管理工具时，如果遇到时区问题，也可用这种方法解决</p>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/05/16/DataGrip%E8%BF%9E%E6%8E%A5Mysql%E9%94%99%E8%AF%AF%E4%B9%8B%E6%97%B6%E5%8C%BA%E9%94%99%E8%AF%AF/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -247,7 +220,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            7
+                            6
                         </p>
                     </a>
                 </div>
@@ -259,7 +232,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            1
                         </p>
                     </a>
                 </div>
@@ -334,7 +307,15 @@
                 分类
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Java-Web/">
+            <span class="level-start">
+                <span class="level-item">Java Web</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -345,7 +326,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/IDEA/" style="font-size: 20px;">IDEA</a> <a href="/tags/Mybatis/" style="font-size: 20px;">Mybatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a>
+        <a href="/tags/IDEA/" style="font-size: 15px;">IDEA</a> <a href="/tags/MyBatis/" style="font-size: 20px;">MyBatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a>
     </div>
 </div>
     
@@ -357,44 +338,6 @@
         <h3 class="menu-label">
             最新文章
         </h3>
-        
-        <article class="media">
-            
-            <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Tomcat配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:05:53.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Tomcat配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="跳转测试">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:03:56.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">跳转测试</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
         
         <article class="media">
             
@@ -436,18 +379,56 @@
         
         <article class="media">
             
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习二">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习二">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习二</a>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习二</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习一">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习一</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
                     </p>
                 </div>
             </div>
@@ -470,7 +451,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -481,7 +462,7 @@
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -507,9 +488,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Mybatis/">
-                        <span class="tag">Mybatis</span>
-                        <span class="tag is-grey">2</span>
+                    <a class="tags has-addons" href="/tags/MyBatis/">
+                        <span class="tag">MyBatis</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -544,44 +525,6 @@
         
         <article class="media">
             
-            <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Tomcat配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:05:53.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Tomcat配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="跳转测试">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:03:56.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">跳转测试</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA中lombok插件离线安装">
@@ -620,18 +563,56 @@
         
         <article class="media">
             
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习二">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习二">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习二</a>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习二</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习一">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习一</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
                     </p>
                 </div>
             </div>
@@ -654,7 +635,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -665,7 +646,7 @@
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -691,9 +672,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Mybatis/">
-                        <span class="tag">Mybatis</span>
-                        <span class="tag is-grey">2</span>
+                    <a class="tags has-addons" href="/tags/MyBatis/">
+                        <span class="tag">MyBatis</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

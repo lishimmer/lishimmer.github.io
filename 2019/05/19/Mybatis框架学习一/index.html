@@ -7,21 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Mybatis框架学习一 - HiSHimmer的博客</title>
+<title>MyBatis框架学习一 - HiSHimmer的博客</title>
 
 
-    <meta name="description" content="mysql : 8.0 一、概述   持久层技术解决方案：  JDBC技术：  Connection PreparedStatement ResultSet   Spring的JdbcTemplate:  Spring中对jdbc的封装   Apache的DButils：  与Spring的JdbcTemplate很像，也是对Jdbc的封装      以上这些都不是框架，JDBC是规范，Sprin">
+    <meta name="description" content="mysql : 8.0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mybatis框架学习一">
+<meta property="og:title" content="MyBatis框架学习一">
 <meta property="og:url" content="http://yoursite.com/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/index.html">
 <meta property="og:site_name" content="HiSHimmer的博客">
-<meta property="og:description" content="mysql : 8.0 一、概述   持久层技术解决方案：  JDBC技术：  Connection PreparedStatement ResultSet   Spring的JdbcTemplate:  Spring中对jdbc的封装   Apache的DButils：  与Spring的JdbcTemplate很像，也是对Jdbc的封装      以上这些都不是框架，JDBC是规范，Sprin">
+<meta property="og:description" content="mysql : 8.0">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2019-05-19T04:02:35.000Z">
-<meta property="article:modified_time" content="2020-02-21T06:41:01.896Z">
+<meta property="article:modified_time" content="2020-03-06T07:28:49.564Z">
 <meta property="article:author" content="HiShimmer">
-<meta property="article:tag" content="Mybatis">
+<meta property="article:tag" content="MyBatis">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
@@ -81,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Mybatis框架学习一" height="28">
+                <img src="/images/logo.svg" alt="MyBatis框架学习一" height="28">
             
             </a>
         </div>
@@ -128,11 +128,15 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 763 个字)
+                    7 分钟 读完 (大约 995 个字)
                 </span>
                 
                 
@@ -141,12 +145,13 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Mybatis框架学习一
+                MyBatis框架学习一
             
         </h1>
         <div class="content">
             <p>mysql : 8.0</p>
-<h5><span id="一-概述">一、概述</span></h5>
+<a id="more"></a>
+<h5><span id="概述">概述</span></h5>
 <blockquote>
 <ol>
 <li>持久层技术解决方案：
@@ -173,21 +178,22 @@
 </ol>
 <p><strong>以上这些都不是框架，JDBC是规范，Spring的JdbcTemplate和Apache的DButils都只是工具类</strong></p>
 <ol start="2">
-<li>Mybatis框架概述：</li>
+<li>MyBatis框架概述：</li>
 </ol>
 <blockquote>
 <ul>
-<li>Mybatis是一个优秀的基于Java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建链接、创建statement等过程。</li>
+<li>Mybatis是apache的一个开源项目iBatis，2010年这个项目由apache software foundation迁移到了google code，并且改名为Mybatis，2013年迁移到Github</li>
+<li>Mybatis<strong>是一个数据持久化的开源框架</strong>，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建链接、创建statement等过程。</li>
 <li>mybatis<strong>可通过xml或注解的方式</strong>将要执行的statement语句配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句，<strong>最后由mybatis框架执行sql并将结果映射为java对象并返回</strong>。</li>
 <li>采用ORM思想解决了实体和数据库映射的问题，对jdbc进行了封装，屏蔽了jdbc api底层访问细节，是我们不用与Jdbc api打交道，就可以完成对数据库的持久化操作。</li>
 </ul>
 </blockquote>
 </blockquote>
-<h5><span id="二-创建mysql用户测试表">二、创建Mysql用户测试表</span></h5>
+<h5><span id="创建mysql用户测试表">创建Mysql用户测试表</span></h5>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">user</span>(</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="literal">null</span> auto_increment,</span><br><span class="line">  username <span class="built_in">varchar</span>(<span class="number">30</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'用户名称'</span>,</span><br><span class="line">  birthday datetime <span class="keyword">default</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'生日'</span>,</span><br><span class="line">  sex <span class="built_in">char</span>(<span class="number">1</span>) <span class="keyword">default</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'性别'</span>,</span><br><span class="line">  address <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'地址'</span>,</span><br><span class="line">  primary <span class="keyword">key</span> (<span class="keyword">id</span>)</span><br><span class="line">)<span class="keyword">ENGINE</span> =<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span> =utf8;</span><br></pre></td></tr></table></figure>
 <p>插入数据</p>
 <img src="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/a.png" style="zoom:67%;">
-<h5><span id="三-环境配置">三、环境配置</span></h5>
+<h5><span id="环境配置">环境配置</span></h5>
 <ul>
 <li>导入依赖</li>
 </ul>
@@ -199,36 +205,43 @@
 <ul>
 <li>在resource文件下创建Mybatis的主配置文件</li>
 </ul>
-  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--mybatis主配置文件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置环境--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置mysql的环境--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置事务的类型--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置连接池--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--配置连接数据库的基本信息--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/test_mybatis?useUnicode=true<span class="symbol">&amp;amp;</span>character=UTF-8<span class="symbol">&amp;amp;</span>serverTimezone=UTC"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"li980616"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--指定映射配置文件的位置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/litao/repository/UserRepository.xml"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--mybatis主配置文件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置环境--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置mysql的环境--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置事务的类型--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置连接池--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--配置连接数据库的基本信息--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/test_mybatis?useUnicode=true<span class="symbol">&amp;amp;</span>character=UTF-8<span class="symbol">&amp;amp;</span>serverTimezone=UTC"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"li980616"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5><span id="通过mapper代理实现自定义接口">通过Mapper代理实现自定义接口</span></h5>
+<ol>
+<li>自定义接口</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">save</span><span class="params">(User user)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">update</span><span class="params">(Integer id,User user)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deleteById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">findall</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">findById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建接口对应的Mapper.xml，定义接口方法对应的Sql语句</li>
+</ol>
+<blockquote>
+<p>statement标签可根据sql执行的业务选择insert，delete，update，select</p>
+<p>Mybatis框架会根据规则自动创建接口实现类的代理对象。</p>
+<p>规则：</p>
 <ul>
-<li>在resource下创建映射配置文件</li>
+<li><strong>XXXMapper.xml中namespace为接口的全类名</strong></li>
+<li><strong>XXXMapper.xml中statement的id为接口中对应的方法名</strong></li>
+<li><strong>XXXMapper.xml中statement的parameterType和接口中对应方法的参数类型一致</strong></li>
+<li><strong>XXXMapper.xml中statement的resultType和接口中对应的方法的返回值类型要一致</strong></li>
 </ul>
-  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.litao.repository.UserRepository"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--查询所有--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findall"</span> <span class="attr">resultType</span>=<span class="string">"com.litao.entity.User"</span>&gt;</span></span><br><span class="line">        select * from user</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.litao.repository.UserRepository"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--    插入数据--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"save"</span> <span class="attr">parameterType</span>=<span class="string">"com.litao.entity.User"</span>&gt;</span></span><br><span class="line">        insert into user(username,birthday,sex,address) values(#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--    修改数据--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"update"</span>&gt;</span></span><br><span class="line">        update user set username=#&#123;param2.username&#125;,birthday=#&#123;param2.birthday&#125;,sex=#&#123;param2.sex&#125;,address=#&#123;param2.address&#125; where id=#&#123;param1&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--根据id删除数据--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteById"</span> <span class="attr">parameterType</span>=<span class="string">"Integer"</span>&gt;</span></span><br><span class="line">        delete from user where id=#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--查询所有--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findall"</span> <span class="attr">resultType</span>=<span class="string">"com.litao.entity.User"</span>&gt;</span></span><br><span class="line">        select * from user</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--根据id查询数据--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">parameterType</span>=<span class="string">"Integer"</span> <span class="attr">resultType</span>=<span class="string">"com.litao.entity.User"</span>&gt;</span></span><br><span class="line">        select * from user where id=#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>注意事项</p>
-</li>
-<li>
-<p>在Mybatis中把持久层的操作接口和映射文件也叫做 Mapper，所以UserRespository和UserMapper是一样的</p>
-</li>
-<li>
-<p>namespace 的值必须是接口的全限定类名</p>
-</li>
-<li>
-<p>操作配置中（select、update、insert等）的<code>id</code>属性名要和接口中的方法名一致</p>
-</li>
-<li>
-<p><strong>上述操作和注意事项完成后，开发中无需再写接口的实现类</strong></p>
-</li>
+<ul>
+<li>在Mybatis中把持久层的操作接口和映射文件也叫做 Mapper，所以UserRespository和UserMapper是一样的</li>
+<li><strong>上述操作和注意事项完成后，开发中无需再写接口的实现类</strong></li>
 </ul>
-
+<ol start="3">
+<li>在Mybatis的主配置文件注册UserRepository.xml</li>
+</ol>
+   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/litao/repository/UserRepository.xml"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Mybatis/" rel="tag">Mybatis</a>
+                    <a class="has-link-grey -link" href="/tags/MyBatis/" rel="tag">MyBatis</a>
                 </div>
             </div>
         </div>
@@ -245,18 +258,6 @@
         <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
         <div class="buttons is-centered">
             
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
-</div>
-
-                
         </div>
     </div>
 </div>
@@ -269,7 +270,7 @@
         <div class="level-start">
             <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Mybatis框架学习二</span>
+                <span class="level-item">MyBatis框架学习二</span>
             </a>
         </div>
         
@@ -326,7 +327,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            7
+                            6
                         </p>
                     </a>
                 </div>
@@ -338,7 +339,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            1
                         </p>
                     </a>
                 </div>
@@ -413,7 +414,15 @@
                 分类
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Java-Web/">
+            <span class="level-start">
+                <span class="level-item">Java Web</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -424,7 +433,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/IDEA/" style="font-size: 20px;">IDEA</a> <a href="/tags/Mybatis/" style="font-size: 20px;">Mybatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a>
+        <a href="/tags/IDEA/" style="font-size: 15px;">IDEA</a> <a href="/tags/MyBatis/" style="font-size: 20px;">MyBatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a>
     </div>
 </div>
     
@@ -436,44 +445,6 @@
         <h3 class="menu-label">
             最新文章
         </h3>
-        
-        <article class="media">
-            
-            <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Tomcat配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:05:53.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Tomcat配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="跳转测试">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:03:56.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">跳转测试</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
         
         <article class="media">
             
@@ -515,18 +486,56 @@
         
         <article class="media">
             
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习二">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习二">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习二</a>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习二</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习一">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习一</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
                     </p>
                 </div>
             </div>
@@ -549,7 +558,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -560,7 +569,7 @@
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -586,9 +595,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Mybatis/">
-                        <span class="tag">Mybatis</span>
-                        <span class="tag is-grey">2</span>
+                    <a class="tags has-addons" href="/tags/MyBatis/">
+                        <span class="tag">MyBatis</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -623,44 +632,6 @@
         
         <article class="media">
             
-            <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Tomcat配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:05:53.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Tomcat配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="跳转测试">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:03:56.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">跳转测试</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA中lombok插件离线安装">
@@ -699,18 +670,56 @@
         
         <article class="media">
             
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习二">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习二">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习二</a>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习二</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习一">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习一</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
                     </p>
                 </div>
             </div>
@@ -733,7 +742,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -744,7 +753,7 @@
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -770,9 +779,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Mybatis/">
-                        <span class="tag">Mybatis</span>
-                        <span class="tag is-grey">2</span>
+                    <a class="tags has-addons" href="/tags/MyBatis/">
+                        <span class="tag">MyBatis</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -800,7 +809,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Mybatis框架学习一" height="28">
+                    <img src="/images/logo.svg" alt="MyBatis框架学习一" height="28">
                 
                 </a>
                 <p class="is-size-7">

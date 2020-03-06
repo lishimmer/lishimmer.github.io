@@ -138,7 +138,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 198 个字)
+                    1 分钟 读完 (大约 207 个字)
                 </span>
                 
                 
@@ -152,41 +152,16 @@
         </h1>
         <div class="content">
             <p>因为网络问题，安装lombok一直失败，所以这次采用插件包离线安装</p>
-<ol>
-<li>下载插件包，插件包有两个地方可以下载，分别是IDEA的官方插件仓库和GitHub里lombok-intellij-plugin仓库</li>
-</ol>
-<blockquote>
-<p>IDEA：<a href="http://plugins.jetbrains.com/plugin/6317-lombok-plugin">http://plugins.jetbrains.com/plugin/6317-lombok-plugin</a></p>
-<p>Github：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a></p>
-</blockquote>
-<p>我这里采用Github仓库的</p>
-<ol start="2">
-<li>
-<p>对照自己下载的IDEA版本下载指定的插件包</p>
-<img src="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/a.png" style="zoom: 50%;">
-<p>文件下载</p>
-<img src="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/b.png">
-<p>不清楚自己IDEA的，可依次进入IDEA-----&gt; Help —&gt;About查看</p>
-<img src="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/c.png" style="zoom:50%;">
-</li>
-<li>
-<p>安装插件包</p>
-<blockquote>
-<ul>
-<li>依次进入IDEA —&gt; Settings -----&gt;Plugins</li>
-</ul>
-<img src="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/d.png">
-<ul>
-<li>点击第三个选项，找到刚才下载的lombok插件包的位置进行安装，完成后重启IDEA</li>
-</ul>
-<p><img src="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/e.png" alt></p>
-<p>这样就安装完成了</p>
-</blockquote>
-</li>
-</ol>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -212,7 +187,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 702 个字)
+                    5 分钟 读完 (大约 703 个字)
                 </span>
                 
                 
@@ -226,106 +201,20 @@
         </h1>
         <div class="content">
             <p>操作系统: win10</p>
-<h5><span id="1idea介绍">1.IDEA介绍</span></h5>
+<h5 id="1-IDEA介绍">1.IDEA介绍</h5>
 <blockquote>
 <p>IDEA全称IntelliJ IDEA（JetBrains公司旗下的产品），是Java编程语言开发的集成境。“Capable and Ergonomic IDE for JVM” <a href="https://www.jetbrains.com/idea/">官网</a>,适用于JVM的功能强大且符合人体工程学(Human Engineering)的IDE（Integrated Development Environment-集成开发环境）</p>
 </blockquote>
-<h5><span id="2-下载并安装">2. 下载并安装</span></h5>
-<blockquote>
-<ul>
-<li>网址   :      <a href="https://www.jetbrains.com/idea/">https://www.jetbrains.com/idea/</a></li>
-</ul>
-<ul>
-<li>进行安装</li>
-</ul>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/a.png" style="zoom:67%;">
-<p>​      一直点击next完成安装</p>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/b.png" style="zoom:67%;">
-</blockquote>
-<h5><span id="3目录结构">3.目录结构</span></h5>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/c.png" style="zoom: 67%;">
-<blockquote>
-<ul>
-<li>bin:容器，执行文件和启动参数等</li>
-<li>help：快捷键文档和其它帮助文档</li>
-<li>jbr:???</li>
-<li>lib:IDEA依赖的类库</li>
-<li>license：各个插件许可</li>
-<li>plugins: IDEA插件</li>
-<li>redist:???</li>
-</ul>
-</blockquote>
-<p>bin目录下：</p>
-<blockquote>
-<ul>
-<li>
-<p>idea.properties :IDEA配置文件</p>
-</li>
-<li>
-<p>idea64.exe.vmoptions  ：64位idea vm配置文件</p>
-</li>
-</ul>
-<blockquote>
-<p>vm配置文件</p>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/d.png" style="zoom: 67%;">
-<ul>
-<li>-Xms128m : 设置初始的内存数，提高该值可以加快Java程序的启动速度（16内存好像可以尝试改为-Xms512m）</li>
-<li>-Xmx1010m :设置最大内存数，提高该值，可以减少内存Garage收集的频率，提高程序性能（16内存好像可以尝试改为-Xmx1500m）</li>
-<li>-XX:ReservedCodeCacheSize=240m ：保留代码占用的内存容量（16G 内存的机器可尝试设置为500m）</li>
-</ul>
-</blockquote>
-<ul>
-<li>设置目录（C盘用户文件下）</li>
-</ul>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/e.png">
-<blockquote>
-<p>这是IDEA保存各种配置的目录。 这个设置目录有一个特性，就是你删除掉整个目录之<br>
-后，重新启动 IntelliJ IDEA 会再自动帮你生成一个全新的默认配置，所以很多时候如果你把<br>
-IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默认。</p>
-</blockquote>
-<p>有两个是因为我下过两个版本的IDEA，老版本的配置我没有删掉</p>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/f.png">
-<blockquote>
-<ul>
-<li>config：该目录是IDEA 个性化化配置目录，或者说是整个 IDE 设置目录。安装新版本的 IntelliJ IDEA 时会自动扫描硬盘上的旧配置目录，被扫描的目录指的就是该目录。<strong>这个目录主要记录了IDEA 主要配置功能、自定义的代码模板、自定义的文件模板、自定义的快捷键、 Project 的 tasks 记录等个性化的设置</strong>。</li>
-<li>system : 该目录是IDEA系统文件目录，是 IDEA 与开发项目一个桥梁目录，<strong>里面主要有：缓存、索引、容器文件输出等</strong></li>
-</ul>
-</blockquote>
-</blockquote>
-<h5><span id="4-这里推荐一款idea编辑字体jetbrains-mono">4. 这里推荐一款IDEA编辑字体(jetbrains mono)</span></h5>
-<ul>
-<li>字体样例:</li>
-</ul>
-<blockquote>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/zitiyangli.png" style="zoom: 80%;">
-</blockquote>
-<ul>
-<li>下载步骤</li>
-</ul>
-<blockquote>
-<p>官方网址: <a href="https://www.jetbrains.com/lp/mono/">https://www.jetbrains.com/lp/mono/</a></p>
- <img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/g.png" style="zoom: 50%;">
-<p>点击 右上角下载</p>
-</blockquote>
-<ul>
-<li>下载完成后，解压，进入<code>ttf</code>文件夹</li>
-</ul>
-<blockquote>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/h.png" style="zoom:67%;">
-<p>逐一双击进行安装</p>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/i.png" style="zoom:50%;">
-</blockquote>
-<ul>
-<li>
-<p>字体样式安装完后，打开IDEA，依次进入file ----&gt;Settings —&gt;Editor ----&gt;Font 进行设置</p>
-<blockquote>
-<img src="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/last.png" style="zoom: 80%;">
-</blockquote>
-</li>
-</ul>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -379,7 +268,7 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            7
+                            6
                         </p>
                     </a>
                 </div>
@@ -391,7 +280,7 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            1
                         </p>
                     </a>
                 </div>
@@ -466,7 +355,15 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
                 分类
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Java-Web/">
+            <span class="level-start">
+                <span class="level-item">Java Web</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -477,7 +374,7 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/IDEA/" style="font-size: 20px;">IDEA</a> <a href="/tags/Mybatis/" style="font-size: 20px;">Mybatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a>
+        <a href="/tags/IDEA/" style="font-size: 15px;">IDEA</a> <a href="/tags/MyBatis/" style="font-size: 20px;">MyBatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a>
     </div>
 </div>
     
@@ -489,44 +386,6 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
         <h3 class="menu-label">
             最新文章
         </h3>
-        
-        <article class="media">
-            
-            <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Tomcat配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:05:53.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Tomcat配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="跳转测试">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:03:56.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">跳转测试</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
         
         <article class="media">
             
@@ -568,18 +427,56 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
         
         <article class="media">
             
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习二">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习二">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习二</a>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习二</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习一">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习一</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
                     </p>
                 </div>
             </div>
@@ -602,7 +499,7 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -613,7 +510,7 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -639,9 +536,9 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Mybatis/">
-                        <span class="tag">Mybatis</span>
-                        <span class="tag is-grey">2</span>
+                    <a class="tags has-addons" href="/tags/MyBatis/">
+                        <span class="tag">MyBatis</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -676,44 +573,6 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
         
         <article class="media">
             
-            <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Tomcat配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:05:53.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/Tomcat%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Tomcat配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="跳转测试">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T14:03:56.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">跳转测试</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA中lombok插件离线安装">
@@ -752,18 +611,56 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
         
         <article class="media">
             
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习二">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习二">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习二</a>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习二</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习一">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习一</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
                     </p>
                 </div>
             </div>
@@ -786,7 +683,7 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -797,7 +694,7 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -823,9 +720,9 @@ IntelliJ IDEA 配置改乱了，只要删掉该目录，一切都会还原到默
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Mybatis/">
-                        <span class="tag">Mybatis</span>
-                        <span class="tag is-grey">2</span>
+                    <a class="tags has-addons" href="/tags/MyBatis/">
+                        <span class="tag">MyBatis</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
