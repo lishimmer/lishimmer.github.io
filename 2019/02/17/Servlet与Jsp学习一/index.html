@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2019-02-17T00:30:17.000Z">
-<meta property="article:modified_time" content="2020-03-07T08:53:13.192Z">
+<meta property="article:modified_time" content="2020-03-16T13:12:54.168Z">
 <meta property="article:author" content="HiShimmer">
 <meta property="article:tag" content="Servlet Jsp">
 <meta name="twitter:card" content="summary">
@@ -74,6 +74,15 @@
 
 
 <link rel="stylesheet" href="/css/style.css">
+    <style type="text/css">
+        body{
+            background-image: url('/images/fengjing.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+
 </head>
 <body class="is-3-column">
     <nav class="navbar navbar-main">
@@ -109,6 +118,10 @@
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -130,11 +143,11 @@
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-02-17T00:30:17.000Z">2019-02-17</time>
-                
+                <!-- 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
                 </div>
-                
+                 -->
                 
                 <span class="level-item has-text-grey">
                     
@@ -152,7 +165,7 @@
             
         </h1>
         <div class="content">
-            <h3><span id="什么是servlet控制层的访问">什么是Servlet（控制层的访问）</span></h3>
+            <h3 id="什么是Servlet（控制层的访问）">什么是Servlet（控制层的访问）</h3>
 <p>servlet是Java Web开发的基石，与平台无关的服务器组件，它是运行在Servlet容器/Web应用服务器/Tomcat，负责与客户端进行通信</p>
 <a id="more"></a>
 <p>servlet的功能：</p>
@@ -160,7 +173,7 @@
 <li>创建并返回基于客户请求的动态Html页面</li>
 <li>与数据库进行通信</li>
 </ul>
-<h3><span id="如何使用">如何使用</span></h3>
+<h3 id="如何使用">如何使用</h3>
 <p>Servlet本身是一组接口，自定义一个类，并且实现Servlet接口，这个类就具备了接收客户端请求以及做出响应的功能。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.litao.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line"> &#125;</span><br><span class="line">    </span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"> &#125;</span><br><span class="line">    </span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse</span></span></span><br><span class="line"><span class="function"><span class="params">servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line"> String id = servletRequest.getParameter(<span class="string">"id"</span>);</span><br><span class="line"> System.out.println(<span class="string">"我是Servlet，我已经接收到了客户端发来的请求，参数是"</span>+id);</span><br><span class="line"> servletResponse.setContentType(<span class="string">"text/html;charset=UTF-8;//解决中文输出乱码问题</span></span><br><span class="line"><span class="string"> servletResponse.getWriter().write("</span>客户端你好，我已接收到你的请求<span class="string">");</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string"> @Override</span></span><br><span class="line"><span class="string"> public String getServletInfo() &#123;</span></span><br><span class="line"><span class="string"> return null;</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string"> @Override</span></span><br><span class="line"><span class="string"> public void destroy() &#123;</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>浏览器不能直接访问Servlet文件，只能通过映射的方式来间接访问Servlet，映射需要开发者手动配置，有两种配置方式。</p>
@@ -176,7 +189,7 @@
 </li>
 </ul>
 <p>上述两种配置方式结果完全一致，将demo1与MyServlet进行映射，即在浏览器地址栏中直接访问domo1就可以映射到MyServlet</p>
-<h3><span id="servlet生命周期">Servlet生命周期</span></h3>
+<h3 id="Servlet生命周期">Servlet生命周期</h3>
 <ol>
 <li>当浏览器访问servlet时，Tomcat会查询当前servlet的实例化对象是否存在，如果不存在，则通过反射机制动态创建对象，如果存在，直接执行第三步</li>
 <li>调用init（）方法完成初始化操作（只调用一次）</li>
@@ -192,7 +205,7 @@
 <li>destory只调用一次，销毁对象</li>
 </ol>
 </blockquote>
-<h3><span id="servletconfig">ServletConfig</span></h3>
+<h3 id="ServletConfig">ServletConfig</h3>
 <p>该接口是用来描述Servlet的基本信息的</p>
 <ul>
 <li>getServletName（）  返回Servlet的名称，即全类名（带着包名的类名）</li>
@@ -208,7 +221,7 @@
 <li>ServletConfig是局部对象，ServletContext是全局对象</li>
 </ol>
 </blockquote>
-<h3><span id="servlet的层次结构">Servlet的层次结构</span></h3>
+<h3 id="Servlet的层次结构">Servlet的层次结构</h3>
 <p>Servlet --》GenericServlet --》HttpServlet</p>
 <blockquote>
 <ul>
@@ -222,7 +235,7 @@
 <p>开发者自定义的Servlet只需要继承HttpServlet即可，重写doGet和doPost</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.litao.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line"> </span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h3><span id="什么是-jsp">什么是 Jsp</span></h3>
+<h3 id="什么是-Jsp">什么是 Jsp</h3>
 <p>Jsp本质上是一个Servlet，Jsp主要负责与用户交互，将最终的界面呈现给用户。Jsp是一个Html+Js+Css+Java的混合文件。</p>
 <p>当服务器接收到一个后缀是Jsp的请求时，将该请求交给Jsp引擎去处理，每一个Jsp页面第一次被访问时，Jsp引擎会将它翻译成一个Servlet文件（保存在Tomcat的Work文件夹下），再由Web容器调用Servlet完成响应。</p>
 <p>单纯从开发的角度看，Jsp就是在Html中嵌入了Java程序。</p>
@@ -243,7 +256,7 @@
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!</span><br><span class="line"> <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="string">"HelloWorld"</span>;</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">String str = test();</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%=str%&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3><span id="jsp的9个内置对象">Jsp的9个内置对象</span></h3>
+<h3 id="Jsp的9个内置对象">Jsp的9个内置对象</h3>
 <ol>
 <li>request:  表示一次请求， HttpServletRequest</li>
 <li>response：表示一次响应， HttpServletResponse</li>
@@ -256,7 +269,7 @@
 <li>exception：表示JSP页面发生的异常，Exception</li>
 </ol>
 <p><strong>常用的有request、response、pageContext、session、application</strong></p>
-<h4><span id="request-常用方法">request 常用方法：</span></h4>
+<h4 id="request-常用方法：">request 常用方法：</h4>
 <ul>
 <li><code>String getParameter（String key）</code>  获取客户端传来的参数，如?id=1&amp;name=tom</li>
 <li><code>void setAttribute（String key,Object value）</code>   通过键值对的形式保存数据</li>
@@ -265,7 +278,7 @@
 <li><code>String[] getParameterValues（）</code>  获取客户端传来的多个同名参数  如name=li&amp;name=tom</li>
 <li><code>void setCharacterEncoding（String charset） </code>  获取每个请求的编码</li>
 </ul>
-<h4><span id="reponse常用方法">reponse常用方法：</span></h4>
+<h4 id="reponse常用方法：">reponse常用方法：</h4>
 <ul>
 <li><code>sendRedirect（String path）</code>      重定向，页面之间的跳转</li>
 </ul>
@@ -281,7 +294,7 @@
 <li>forward只是在原有request请求上再做一次资源的跳转，因此不能访问外部资源，而redirect可以访问外部资源，例如百度。</li>
 </ol>
 </blockquote>
-<h4><span id="session-用户会话">Session （用户会话）</span></h4>
+<h4 id="Session-（用户会话）">Session （用户会话）</h4>
 <p>服务器无法识别每一次Http请求的出处（不知道来自哪个终端），它只会接收到一个请求信号，所以将用户的响应发送给其他人时，必须有一种技术来让服务器知道请求来自哪，这就是会话技术。</p>
 <p>会话：就是客户端和服务器之间发生的一系列连续的请求和响应的过程，打开浏览器进行操作到关闭浏览器的过程</p>
 <p>会话状态：指服务器和浏览器在会话过程中产生的状态信息，借助于会话状态，服务器能够把属于同一次会话的一系列请求和响应关联起来。</p>
@@ -291,7 +304,7 @@
 <li>cookie</li>
 </ul>
 <p>属于同一次会话的请求都有一个相同的标识符 ，sessionID</p>
-<h5><span id="session常用的方法">session常用的方法</span></h5>
+<h5 id="session常用的方法">session常用的方法</h5>
 <ul>
 <li>
 <p><code>HttpSession session = request.getSession()</code>   得到session</p>
@@ -321,12 +334,12 @@
 <p>例如存储用户信息：</p>
 <p><code>session.setAttribute(&quot;name&quot;,&quot;admin&quot;)</code>    存</p>
 <p><code>session.getAttribute(&quot;name&quot;) </code>  取</p>
-<h5><span id="session生命周期">session生命周期：</span></h5>
+<h5 id="session生命周期：">session生命周期：</h5>
 <blockquote>
 <p>服务端： 只要Web应用重启或关闭就销毁</p>
 <p>客户端： 只要浏览器关闭就销毁</p>
 </blockquote>
-<h5><span id="cookie">Cookie</span></h5>
+<h5 id="Cookie">Cookie</h5>
 <p>Cookie是服务端在HTTP响应中附带给浏览器的一个小文本文件，一旦浏览器保存了某个Cookie，在之后的请求和响应过程中，会将此Cookie来回传递，这样就可以通过Cookie这个载体完成客户端和服务端的数据交互。</p>
 <ul>
 <li>
@@ -354,7 +367,7 @@
 <p>服务端： 不随服务断的重启而销毁</p>
 <p>客户端： 默认是只要关闭浏览器就销毁，但可以通过setMaxAge() 方法来设置有效时间。一旦设置了有效时间，则不随浏览器的关闭而销毁，而是由设置的时间来决定。（可通过setMaxage（0）来退出用户登录）</p>
 </blockquote>
-<h5><span id="session-与cookie的区别">Session 与Cookie的区别</span></h5>
+<h5 id="Session-与Cookie的区别">Session 与Cookie的区别</h5>
 <ul>
 <li>Session 保存在服务器中，Cookie保存在个人浏览器中</li>
 <li>Session 保存的数据类型是Object ，Cookie保存的数据类型是String</li>
@@ -447,7 +460,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            11
+                            17
                         </p>
                     </a>
                 </div>
@@ -459,7 +472,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            2
+                            3
                         </p>
                     </a>
                 </div>
@@ -471,7 +484,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            6
+                            8
                         </p>
                     </a>
                 </div>
@@ -489,6 +502,74 @@
 </div>
     
         
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#什么是Servlet（控制层的访问）">
+        <span class="has-mr-6">1</span>
+        <span>什么是Servlet（控制层的访问）</span>
+        </a></li><li>
+        <a class="is-flex" href="#如何使用">
+        <span class="has-mr-6">2</span>
+        <span>如何使用</span>
+        </a></li><li>
+        <a class="is-flex" href="#Servlet生命周期">
+        <span class="has-mr-6">3</span>
+        <span>Servlet生命周期</span>
+        </a></li><li>
+        <a class="is-flex" href="#ServletConfig">
+        <span class="has-mr-6">4</span>
+        <span>ServletConfig</span>
+        </a></li><li>
+        <a class="is-flex" href="#Servlet的层次结构">
+        <span class="has-mr-6">5</span>
+        <span>Servlet的层次结构</span>
+        </a></li><li>
+        <a class="is-flex" href="#什么是-Jsp">
+        <span class="has-mr-6">6</span>
+        <span>什么是 Jsp</span>
+        </a></li><li>
+        <a class="is-flex" href="#Jsp的9个内置对象">
+        <span class="has-mr-6">7</span>
+        <span>Jsp的9个内置对象</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#request-常用方法：">
+        <span class="has-mr-6">7.1</span>
+        <span>request 常用方法：</span>
+        </a></li><li>
+        <a class="is-flex" href="#reponse常用方法：">
+        <span class="has-mr-6">7.2</span>
+        <span>reponse常用方法：</span>
+        </a></li><li>
+        <a class="is-flex" href="#Session-（用户会话）">
+        <span class="has-mr-6">7.3</span>
+        <span>Session （用户会话）</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#session常用的方法">
+        <span class="has-mr-6">7.3.1</span>
+        <span>session常用的方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#session生命周期：">
+        <span class="has-mr-6">7.3.2</span>
+        <span>session生命周期：</span>
+        </a></li><li>
+        <a class="is-flex" href="#Cookie">
+        <span class="has-mr-6">7.3.3</span>
+        <span>Cookie</span>
+        </a></li><li>
+        <a class="is-flex" href="#Session-与Cookie的区别">
+        <span class="has-mr-6">7.3.4</span>
+        <span>Session 与Cookie的区别</span>
+        </a></li></ul></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
     
         <div class="card widget">
     <div class="card-content">
@@ -535,12 +616,20 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Java-Web/">
             <span class="level-start">
                 <span class="level-item">Java Web</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">10</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
@@ -561,7 +650,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/IDEA/" style="font-size: 15px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/MyBatis/" style="font-size: 20px;">MyBatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Servlet-Jsp/" style="font-size: 20px;">Servlet Jsp</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+        <a href="/tags/IDEA/" style="font-size: 20px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/MyBatis/" style="font-size: 20px;">MyBatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Servlet-Jsp/" style="font-size: 20px;">Servlet Jsp</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Spring-MVC/" style="font-size: 20px;">Spring MVC</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
     </div>
 </div>
     
@@ -573,6 +662,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/18/IDEA-%E6%8F%92%E4%BB%B6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA 插件">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T03:19:44.000Z">2020-02-18</time></div>
+                    <a href="/2020/02/18/IDEA-%E6%8F%92%E4%BB%B6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">IDEA 插件</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -614,6 +722,25 @@
         
         <article class="media">
             
+            <a href="/2020/01/16/Git%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Git命令行（包括一些linux命令行）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T06:50:16.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/Git%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Git命令行（包括一些linux命令行）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
@@ -624,44 +751,6 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
                     <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习二">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习二</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习一">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习一</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
                     </p>
@@ -686,7 +775,18 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -695,6 +795,17 @@
             <a class="level is-marginless" href="/archives/2019/05/">
                 <span class="level-start">
                     <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">4</span>
@@ -729,7 +840,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/IDEA/">
                         <span class="tag">IDEA</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -757,6 +868,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Servlet-Jsp/">
                         <span class="tag">Servlet Jsp</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring/">
+                        <span class="tag">Spring</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-MVC/">
+                        <span class="tag">Spring MVC</span>
                         <span class="tag is-grey">3</span>
                     </a>
                 </div>
@@ -792,6 +917,25 @@
         
         <article class="media">
             
+            <a href="/2020/02/18/IDEA-%E6%8F%92%E4%BB%B6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA 插件">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T03:19:44.000Z">2020-02-18</time></div>
+                    <a href="/2020/02/18/IDEA-%E6%8F%92%E4%BB%B6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">IDEA 插件</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA中lombok插件离线安装">
@@ -830,6 +974,25 @@
         
         <article class="media">
             
+            <a href="/2020/01/16/Git%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Git命令行（包括一些linux命令行）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T06:50:16.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/Git%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Git命令行（包括一些linux命令行）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
@@ -840,44 +1003,6 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
                     <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习二">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T07:37:37.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%BA%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习二</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MyBatis框架学习一">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T04:02:35.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MyBatis框架学习一</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
                     </p>
@@ -902,7 +1027,18 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -911,6 +1047,17 @@
             <a class="level is-marginless" href="/archives/2019/05/">
                 <span class="level-start">
                     <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">4</span>
@@ -945,7 +1092,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/IDEA/">
                         <span class="tag">IDEA</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -973,6 +1120,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Servlet-Jsp/">
                         <span class="tag">Servlet Jsp</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring/">
+                        <span class="tag">Spring</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-MVC/">
+                        <span class="tag">Spring MVC</span>
                         <span class="tag is-grey">3</span>
                     </a>
                 </div>

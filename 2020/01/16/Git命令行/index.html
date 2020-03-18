@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Git命令行（包括一些linux命令行） - HiSHimmer的博客</title>
+
+
+    <meta name="description" content="linux 命令行  ll  查看当前文件夹所有文件 ll | less 查看根目录文件 （ ESC + :wq  或者  ESC + ZZ 退出） ls -1A  查看当前文件夹中包括隐藏文件的所有文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git命令行（包括一些linux命令行）">
+<meta property="og:url" content="http://yoursite.com/2020/01/16/Git%E5%91%BD%E4%BB%A4%E8%A1%8C/index.html">
+<meta property="og:site_name" content="HiSHimmer的博客">
+<meta property="og:description" content="linux 命令行  ll  查看当前文件夹所有文件 ll | less 查看根目录文件 （ ESC + :wq  或者  ESC + ZZ 退出） ls -1A  查看当前文件夹中包括隐藏文件的所有文件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="article:published_time" content="2020-01-16T06:50:16.000Z">
+<meta property="article:modified_time" content="2020-03-16T12:29:08.580Z">
+<meta property="article:author" content="HiShimmer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+    <style type="text/css">
+        body{
+            background-image: url('/images/fengjing.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/mumuxiao_svg.svg" alt="Git命令行（包括一些linux命令行）" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-9-desktop is-7-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-16T06:50:16.000Z">2020-01-16</time>
+                <!-- 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                </div>
+                 -->
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    10 分钟 读完 (大约 1466 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Git命令行（包括一些linux命令行）
+            
+        </h1>
+        <div class="content">
+            <h3 id="linux-命令行">linux 命令行</h3>
+<ul>
+<li><code>ll</code>  查看当前文件夹所有文件</li>
+<li><code>ll | less</code> 查看根目录文件 （ ESC + :wq  或者  ESC + ZZ 退出）</li>
+<li><code>ls -1A</code>  查看当前文件夹中包括隐藏文件的所有文件</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>
+<p><code>ls -1A | less </code> 查看当前文件夹中包括隐藏文件的根目录文件</p>
+</li>
+<li>
+<p><code>mkdir &lt;文件夹名&gt;</code>  创建文件夹</p>
+</li>
+<li>
+<p><code>vim &lt;file&gt;</code> 利用vim文本编辑器创建文件</p>
+</li>
+<li>
+<p><code>cat &lt;file&gt;</code> 查看文件中的内容</p>
+</li>
+<li>
+<p><code>tail &lt;file&gt;</code> 查看文件内容</p>
+<ul>
+<li>-f  循环读取  常用于查阅正在改变的日志文件</li>
+<li>-n &lt;行数&gt; 显示文件尾部n行内容</li>
+</ul>
+</li>
+<li>
+<p><code>pwd</code> 当前的文件全路径名</p>
+</li>
+<li>
+<p><code>cd ~</code> 进入家目录</p>
+</li>
+<li>
+<p><code>rm -r</code>  只能删除文件，不能删除文件夹</p>
+</li>
+<li>
+<p><code>rm -R</code>  既能删除文件也能删除文件夹</p>
+</li>
+</ul>
+<h3 id="本地库操作">本地库操作</h3>
+<ul>
+<li>
+<p><code>git help &lt;命令&gt;</code> 查看命令帮助文档</p>
+</li>
+<li>
+<p><code>git init</code>  初始化一个本地仓库</p>
+</li>
+<li>
+<p><code>git config --global user.name</code>  设置系统级别的签名</p>
+</li>
+<li>
+<p><code>git config --global user.email</code>  设置系统级别的签名</p>
+</li>
+<li>
+<p><code>git status</code>  查看工作区与暂存区的状态</p>
+</li>
+<li>
+<p><code>git add &lt;file&gt;</code>  把文件添加到暂存区</p>
+<blockquote>
+<p>暂存区为工作区下隐藏文件 .git中的index文件</p>
+</blockquote>
+</li>
+<li>
+<p><code>git rm --cached &lt;file&gt;</code> 把文件从暂存区中移除</p>
+</li>
+<li>
+<p><code>git commit -m&quot;commit message&quot; &lt;file&gt;</code>  把暂存区中</p>
+<blockquote>
+<p>每次 commit 都为生成一个commit id（哈希值），方便以后查看历史版本</p>
+<p>未追踪的文件必须先<code>git add</code> 再 <code>git commit</code>，已追踪的文件可以直接 <code>git commit -m&quot;commit message&quot; -a</code>（文件修改）</p>
+<p>工作区（写代码）----》暂存区（临时存储） --------》 本地库（历史版本）</p>
+</blockquote>
+</li>
+<li>
+<p><code>git log</code> 查看历史版本</p>
+<blockquote>
+<p><code>git log --prtty=oneline</code> 每个版本只显示一条信息</p>
+<p><code>git log --oneline</code>  只显示一部分哈希值</p>
+<p><code>git reflog</code></p>
+<p>历史版本好像是存储在.git 中的 object文件夹下</p>
+</blockquote>
+</li>
+<li>
+<p>版本前进、后退</p>
+<p>HEAD指针的移动</p>
+<ul>
+<li><code>git reset --hard &lt;局部哈希值&gt; </code>  前期或后退到某个版本</li>
+<li><code>git reset --hard HEAD^</code>  后退一个版本</li>
+<li><code>git reset --hard HEAD~3</code> 后退3个版本</li>
+<li>–soft 参数 ：仅仅在本地仓库移动HEAD指针</li>
+<li>–mixed 参数：在本地库移动HEAD指针并且重置暂存区</li>
+<li>–hard 参数：在本地库移动HEAD指针并且重置暂存区和工作区</li>
+</ul>
+</li>
+<li>
+<p>文件删除</p>
+<ol>
+<li>
+<p><code>git rm &lt;file&gt;</code> 从工作区和暂存区删除文件</p>
+</li>
+<li>
+<p><code>git reset --hard HEAD</code>  工作区和暂存区恢复刚刚删除的文件</p>
+</li>
+<li>
+<p>执行<code>git commit &lt;file&gt;</code> 提交到版本库</p>
+</li>
+</ol>
+</li>
+<li>
+<p><code>git diff &lt;file&gt;</code>  将工作区中的文件和暂存区中的文件进行比较</p>
+<ul>
+<li><code>git diff &lt;本地库中的历史版本&gt; &lt;file&gt;</code>  将工作区中的文件与本地库历史记录中的文件进行比较</li>
+<li><code>git diff HEAD</code>  比较当前工作区中的多个文件</li>
+</ul>
+</li>
+<li>
+<p>分支管理</p>
+<p>分支：在版本控制过程中，使用多条线同时推进多个任务</p>
+<p>本质：创建和移动HEAD指针</p>
+<p>优点：</p>
+<ol>
+<li>同时并行推进多个功能开发，提高开发效率</li>
+<li>各个分支在开发过程中，如果某一个分支开发失败，不会对其它分支有任何影响，失败的分支删除重新开始即可</li>
+</ol>
+<blockquote>
+<p><code>git branch -v</code>  查看分支</p>
+<p><code>git branch &lt;分支名&gt;</code>  创建一个分支</p>
+<p><code>git checkout &lt;分支名&gt;</code>  切换分支</p>
+<p><code>git merge [分支名]</code>  合并分支名（注意：要先切换到要合并到的分支（如master））</p>
+<p>解决冲突：</p>
+<ol>
+<li>编辑文件，删除特殊符号</li>
+<li>把文件修改到满意的程度，保存退出</li>
+<li>git add <file></file></li>
+<li>git commit -m&quot;日志信息&quot; （此时commit一定不能带具体的文件名）</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3 id="远程库操作（使用Github作为案例）">远程库操作（使用Github作为案例）</h3>
+<p>个人开发者或企业使用GitLab较多，因为github默认会将代码公开出去</p>
+<ul>
+<li>
+<p><code>git remote add &lt;别名&gt; &lt;远程仓库地址&gt;</code>  添加远程仓库地址</p>
+</li>
+<li>
+<p><code>git remote -v</code>  查看远程仓库地址</p>
+</li>
+<li>
+<p><code>git push &lt;别名&gt; &lt;分支名&gt; </code>  把本地仓库推送到远程仓库</p>
+<p>注意：如果组长有一个仓库，成员要想推送内容到组长的仓库，必须先收到组长的加入请求。</p>
+<blockquote>
+<ol>
+<li>组长在本地仓库的settings --》Manage accesss —》Invite a collaborator  通过成员github注册邮箱进行邀请</li>
+<li>成员接收邀请</li>
+</ol>
+</blockquote>
+<p>注意：如果不是基于Github远程库的最新版所作的修改，则不能被推送，必须先执行拉取操作（Github 貌似会根据hashcode是否一致来判断本地库与远程最新版中的内容是否一致）</p>
+</li>
+<li>
+<p><code>git clone &lt;远程仓库地址&gt;</code></p>
+<p>作用：</p>
+<ol>
+<li>完整地把远程库下载到本地</li>
+<li>创建远程仓库地址别名</li>
+<li>初始化本地库（生成.git）</li>
+</ol>
+</li>
+<li>
+<p>拉取</p>
+<ul>
+<li><code>git pull &lt;远程仓库别名&gt; &lt;远程仓库分支名&gt;</code></li>
+<li>pull 操作等于fetch + merge</li>
+<li><code>git fetch &lt;远程仓库地址别名&gt; &lt;远程仓库分支名&gt;</code></li>
+<li><code>git merge &lt;远程仓库地址别名/远程仓库分支名&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>fork （解决跨团队协作问题）</p>
+<p>克隆一份其他人的仓库到自己的github仓库</p>
+<ol>
+<li>拉取到本地</li>
+<li>本地修改，然后推送到远程</li>
+<li>GitHub上创建 Pull Request</li>
+<li>仓库主人可以查看 Pull Request 并审核代码 ，考虑是否合并代码，还可以与Pull Request 的发起人聊天对话，商讨代码（不愧是最大的同性交友网站）</li>
+</ol>
+</li>
+<li>
+<p>ssh （用来免密登录）</p>
+<ul>
+<li><code>ssh-keygen -t rsa -C &lt;github注册邮箱地址&gt;</code>   生成ssh（安全外壳协议）</li>
+<li>复制家目录（cd ~）下 .ssh 文件夹中的 id_rsa.pub 文件内容</li>
+<li>Github —》头像—》settings—》SSH and GPG keys —》 new SSH key</li>
+<li>输入密钥内容</li>
+</ul>
+<p>使用：</p>
+<ul>
+<li>复制仓库的ssh地址</li>
+<li>创建远程仓库别名（git remote add）</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Intellij IDEA 安装</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/">
+                <span class="level-item">Mybatis框架学习三</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/mumuxiao.jpg" alt="HiSHimmer">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        HiSHimmer
+                    </p>
+                    
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China，Shanghai</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            17
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            3
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            8
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/lishimmer/lishimmer.github.io" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#linux-命令行">
+        <span class="has-mr-6">1</span>
+        <span>linux 命令行</span>
+        </a></li><li>
+        <a class="is-flex" href="#本地库操作">
+        <span class="has-mr-6">2</span>
+        <span>本地库操作</span>
+        </a></li><li>
+        <a class="is-flex" href="#远程库操作（使用Github作为案例）">
+        <span class="has-mr-6">3</span>
+        <span>远程库操作（使用Github作为案例）</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            友情链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Iraurs主题</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java-Web/">
+            <span class="level-start">
+                <span class="level-item">Java Web</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/IDEA/" style="font-size: 20px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/MyBatis/" style="font-size: 20px;">MyBatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Servlet-Jsp/" style="font-size: 20px;">Servlet Jsp</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Spring-MVC/" style="font-size: 20px;">Spring MVC</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/18/IDEA-%E6%8F%92%E4%BB%B6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA 插件">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T03:19:44.000Z">2020-02-18</time></div>
+                    <a href="/2020/02/18/IDEA-%E6%8F%92%E4%BB%B6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">IDEA 插件</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA中lombok插件离线安装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-17T13:25:30.000Z">2020-02-17</time></div>
+                    <a href="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" class="title has-link-black-ter is-size-6 has-text-weight-normal">IDEA中lombok插件离线安装</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Intellij IDEA 安装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-17T13:02:54.000Z">2020-02-17</time></div>
+                    <a href="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Intellij IDEA 安装</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/Git%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Git命令行（包括一些linux命令行）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T06:50:16.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/Git%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Git命令行（包括一些linux命令行）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IDEA/">
+                        <span class="tag">IDEA</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JDBC/">
+                        <span class="tag">JDBC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MyBatis/">
+                        <span class="tag">MyBatis</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Servlet-Jsp/">
+                        <span class="tag">Servlet Jsp</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring/">
+                        <span class="tag">Spring</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-MVC/">
+                        <span class="tag">Spring MVC</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
+                        <span class="tag">数据库连接池</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/18/IDEA-%E6%8F%92%E4%BB%B6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA 插件">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T03:19:44.000Z">2020-02-18</time></div>
+                    <a href="/2020/02/18/IDEA-%E6%8F%92%E4%BB%B6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">IDEA 插件</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="IDEA中lombok插件离线安装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-17T13:25:30.000Z">2020-02-17</time></div>
+                    <a href="/2020/02/17/IDEA%E4%B8%ADlombok%E6%8F%92%E4%BB%B6%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" class="title has-link-black-ter is-size-6 has-text-weight-normal">IDEA中lombok插件离线安装</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Intellij IDEA 安装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-17T13:02:54.000Z">2020-02-17</time></div>
+                    <a href="/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Intellij IDEA 安装</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/Git%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Git命令行（包括一些linux命令行）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T06:50:16.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/Git%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Git命令行（包括一些linux命令行）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
+                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IDEA/">
+                        <span class="tag">IDEA</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JDBC/">
+                        <span class="tag">JDBC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MyBatis/">
+                        <span class="tag">MyBatis</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Servlet-Jsp/">
+                        <span class="tag">Servlet Jsp</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring/">
+                        <span class="tag">Spring</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-MVC/">
+                        <span class="tag">Spring MVC</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
+                        <span class="tag">数据库连接池</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/mumuxiao_svg.svg" alt="Git命令行（包括一些linux命令行）" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 HiShimmer&nbsp;
+                Powered by <span>Hexo</span> & <span>Icarus</span
+                     
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
