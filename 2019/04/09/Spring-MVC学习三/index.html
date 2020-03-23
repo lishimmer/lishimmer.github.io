@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2019-04-09T05:46:39.000Z">
-<meta property="article:modified_time" content="2020-03-18T14:38:26.209Z">
+<meta property="article:modified_time" content="2020-03-20T07:42:08.590Z">
 <meta property="article:author" content="HiShimmer">
 <meta property="article:tag" content="Spring MVC">
 <meta name="twitter:card" content="summary">
@@ -152,7 +152,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 170 个字)
+                    22 分钟 读完 (大约 3302 个字)
                 </span>
                 
                 
@@ -175,9 +175,286 @@
 <ul>
 <li>
 <p>创建DateContverter转换器，实现Conveter</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateConverter</span> <span class="keyword">implements</span> <span class="title">Converter</span>&lt;<span class="title">String</span>,<span class="title">Date</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> String pattern;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DateConverter</span><span class="params">(String pattern)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.pattern=pattern;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">convert</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        SimpleDateFormat simpleDateFormat=<span class="keyword">new</span> SimpleDateFormat(<span class="keyword">this</span>.pattern);</span><br><span class="line">        Date date=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            date=simpleDateFormat.parse(s);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> date;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Handler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/converter"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateConverterHandler</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/date"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">date</span><span class="params">(Date date)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> date.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Springmvc.xml中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"conversionService"</span> <span class="attr">class</span>=<span class="string">"org.springframework.context.support.ConversionServiceFactoryBean"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"converters"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.litao.converter.DateConverter"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"yyyy-MM-dd"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">conversion-service</span>=<span class="string">"conversionService"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form action=<span class="string">"converter/date"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">        请输入日期:&lt;input type=<span class="string">"text"</span> name=<span class="string">"date"</span>/&gt;(yyyy-MM-dd)&lt;br/&gt;</span><br><span class="line">        &lt;input type=<span class="string">"submit"</span> value=<span class="string">"提交"</span>/&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+</li>
+</ul>
+<h3 id="Spring-MVC-Rest">Spring MVC Rest</h3>
+<p>REST：Representational State Transfer，资源表现层状态转换，是目前比较主流的一种互联网软件架构，它结构清晰、标准规范、易于理解、便于扩展</p>
+<blockquote>
+<p>资源（Resource）</p>
+<blockquote>
+<p>网络上的一个实体，或者说网络中存在的一个具体信息，一段文本、一张图片、一首歌曲、一段视频等等，总之就是一个具体的存在。可以用一个 URL（统一资源定位符）指向它，每个资源都有对应的一个特定的 URL，要获取该资源时，只需要访问对应的 URI 即可</p>
+</blockquote>
+<p>表现层（Representation）</p>
+<blockquote>
+<p>资源具体呈现出来的形式，比如文本可以用 txt 格式表示，也可以用 HTML、XML、JSON等格式来表示</p>
+</blockquote>
+<p>状态转换(State Transfer)</p>
+<blockquote>
+<p>客户端如果希望操作服务器中的某个资源，就需要通过某种方式让服务端发生状态转换，而这种转换是建立在表现层之上的，所有叫做&quot;表现层状态转换&quot;</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>
+<p>特点：</p>
+<ul>
+<li>URL 更加简洁。</li>
+<li>有利于不同系统之间的资源共享，只需要遵守一定的规范，不需要进行其他配置即可实现资源共享</li>
+</ul>
+</li>
+<li>
+<p>案例</p>
+<p>REST 具体操作就是 HTTP 协议中四个表示操作方式的动词分别对应 CRUD 基本操作。</p>
+<p>GET 用来表示获取资源</p>
+<p>POST 用来表示新建资源</p>
+<p>PUT 用来表示修改资源</p>
+<p>DELETE 用来表示删除资源</p>
+<p>StudentRepository</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.litao.repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.litao.entity.Student;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentRepository</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Collection&lt;Student&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Student <span class="title">findById</span><span class="params">(<span class="keyword">long</span> id)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveOrUpdate</span><span class="params">(Student student)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteById</span><span class="params">(<span class="keyword">long</span> id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>StudentRepositoryImpl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.litao.repository.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.litao.entity.Student;</span><br><span class="line"><span class="keyword">import</span> com.litao.repository.StudentRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentRepositoryImpl</span> <span class="keyword">implements</span> <span class="title">StudentRepository</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;Long,Student&gt; studentMap; <span class="comment">//模拟数据库数据</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        studentMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        studentMap.put(<span class="number">1L</span>,<span class="keyword">new</span> Student(<span class="number">1L</span>,<span class="string">"张三"</span>,<span class="number">22</span>));</span><br><span class="line">        studentMap.put(<span class="number">2L</span>,<span class="keyword">new</span> Student(<span class="number">2L</span>,<span class="string">"李四"</span>,<span class="number">23</span>));</span><br><span class="line">        studentMap.put(<span class="number">3L</span>,<span class="keyword">new</span> Student(<span class="number">3L</span>,<span class="string">"王五"</span>,<span class="number">24</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Collection&lt;Student&gt; <span class="title">findAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> studentMap.values();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Student <span class="title">findById</span><span class="params">(<span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> studentMap.get(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveOrUpdate</span><span class="params">(Student student)</span> </span>&#123;</span><br><span class="line">        studentMap.put(student.getId(),student);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteById</span><span class="params">(<span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">        studentMap.remove(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Handler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.litao.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.litao.entity.Student;</span><br><span class="line"><span class="keyword">import</span> com.litao.entity.User;</span><br><span class="line"><span class="keyword">import</span> com.litao.repository.StudentRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/rest"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> StudentRepository studentRepository;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/findAll"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Collection&lt;Student&gt; <span class="title">findAll</span><span class="params">(HttpServletResponse response)</span></span>&#123;</span><br><span class="line">        response.setContentType(<span class="string">"text/json;charset=UTF-8"</span>);</span><br><span class="line">        <span class="keyword">return</span> studentRepository.findAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/findById/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Student <span class="title">findById</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">long</span> id)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> studentRepository.findById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/save"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(@RequestBody Student student)</span></span>&#123;</span><br><span class="line">        studentRepository.saveOrUpdate(student);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PutMapping</span>(<span class="string">"/update"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(@RequestBody Student student)</span></span>&#123;</span><br><span class="line">        studentRepository.saveOrUpdate(student);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@DeleteMapping</span>(<span class="string">"/deleteById/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteById</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">long</span> id)</span>&#123;</span><br><span class="line">        studentRepository.deleteById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Spring-MVC文件上传下载">Spring MVC文件上传下载</h3>
+<ul>
+<li>
+<p>单文件上传</p>
+<p>底层是使用 Apache fileupload 组件完成上传，Spring MVC 对这种方式进行了封装</p>
+<ul>
+<li>
+<p>导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;%@ page isELIgnored=<span class="string">"false"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">"/file/upload"</span> method=<span class="string">"post"</span> enctype=<span class="string">"multipart/form-data"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"file"</span> name=<span class="string">"multipartFile"</span>/&gt;</span><br><span class="line">    &lt;input type=<span class="string">"submit"</span> value=<span class="string">"上传"</span>/&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>
+<p>form 的 method 设置为 post（get 请求只能将文件名传给服务器）</p>
+</li>
+<li>
+<p>form 的 enctype 设置为 multipart-form-data（如果不设置只能将文件名传给服务器）</p>
+</li>
+<li>
+<p>input 的 type 设置为 file</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>Handler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileHandler</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/upload"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(MultipartFile multipartFile, HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(multipartFile.getSize()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//获取保存上传文件的file路径</span></span><br><span class="line">            String path=request.getServletContext().getRealPath(<span class="string">"/file"</span>);</span><br><span class="line">            <span class="comment">//获取上传文件名</span></span><br><span class="line">            String name=multipartFile.getOriginalFilename();</span><br><span class="line">            File file=<span class="keyword">new</span> File(path,name);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(!file.exists())&#123;</span><br><span class="line">                    file.mkdirs();</span><br><span class="line">                &#125;</span><br><span class="line">                multipartFile.transferTo(file);</span><br><span class="line">                <span class="comment">//保存上传之后的文件路径</span></span><br><span class="line">                request.setAttribute(<span class="string">"path"</span>,<span class="string">"/file/"</span>+name);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"upload"</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>springmvc.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置上传组件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"multipartResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>多文件上传</p>
+<ul>
+<li>
+<p>Jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;%@ page isELIgnored=<span class="string">"false"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">"/file/uploads"</span> method=<span class="string">"post"</span> enctype=<span class="string">"multipart/form-data"</span>&gt;</span><br><span class="line">    file1：&lt;input type=<span class="string">"file"</span> name=<span class="string">"multipartFiles"</span>/&gt;</span><br><span class="line">    file2: &lt;input type=<span class="string">"file"</span> name=<span class="string">"multipartFiles"</span>/&gt;&lt;br/&gt;</span><br><span class="line">    file3: &lt;input type=<span class="string">"file"</span> name=<span class="string">"multipartFiles"</span>&gt;&lt;br/&gt;</span><br><span class="line">    &lt;input type=<span class="string">"submit"</span> value=<span class="string">"上传"</span>/&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Handler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileHandler</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/uploads"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">uploads</span><span class="params">(MultipartFile[] multipartFiles,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        List&lt;String&gt; files=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(MultipartFile multipartFile:multipartFiles)&#123;</span><br><span class="line">            <span class="keyword">if</span>(multipartFile.getSize()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                String path=request.getServletContext().getRealPath(<span class="string">"/file"</span>);</span><br><span class="line">                String name= multipartFile.getOriginalFilename();</span><br><span class="line">                File file=<span class="keyword">new</span> File(path,name);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span>(!file.exists())&#123;</span><br><span class="line">                        file.mkdirs();</span><br><span class="line">                    &#125;</span><br><span class="line">                    multipartFile.transferTo(file);</span><br><span class="line">                    files.add(<span class="string">"/file"</span>+name);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"upload"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>下载</p>
+<ul>
+<li>Jsp</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;a href="/file/download/1"&gt;1.png&lt;/a&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Handler</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">@RestController</span></span><br><span class="line">  <span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadHandler</span> </span>&#123;</span><br><span class="line">      <span class="meta">@GetMapping</span>(<span class="string">"/download/&#123;name&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">(@PathVariable(<span class="string">"name"</span>)</span>String name, HttpServletRequest request, HttpServletResponse response)</span>&#123;</span><br><span class="line">          <span class="keyword">if</span>(name!=<span class="keyword">null</span>)&#123;</span><br><span class="line">              name+=<span class="string">".png"</span>;</span><br><span class="line">              String path=request.getServletContext().getRealPath(<span class="string">"/file"</span>);</span><br><span class="line">              File file=<span class="keyword">new</span> File(path,name);</span><br><span class="line">              OutputStream outputStream=<span class="keyword">null</span>;</span><br><span class="line">              <span class="keyword">if</span>(file.exists())&#123;</span><br><span class="line">                  response.setContentType(<span class="string">"application/forc-download"</span>);</span><br><span class="line">                  response.setHeader(<span class="string">"Content-Dispositon"</span>,<span class="string">"attachment;filename="</span>+name);</span><br><span class="line">                  <span class="keyword">try</span> &#123;</span><br><span class="line">                      outputStream=response.getOutputStream();</span><br><span class="line">                      outputStream.write(FileUtils.readFileToByteArray(file));</span><br><span class="line">                      outputStream.flush();</span><br><span class="line">                  &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                      e.printStackTrace();</span><br><span class="line">                  &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">                      <span class="keyword">if</span>(outputStream!=<span class="keyword">null</span>) &#123;</span><br><span class="line">                          <span class="keyword">try</span> &#123;</span><br><span class="line">                              outputStream.close();</span><br><span class="line">                          &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                              e.printStackTrace();</span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;</span><br><span class="line">  </span><br><span class="line">          &#125;</span><br><span class="line">  </span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Spring-MVC表单标签库">Spring MVC表单标签库</h3>
+<ul>
+<li>
+<p>Handler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/get"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView(<span class="string">"tag"</span>);</span><br><span class="line">    Student student = <span class="keyword">new</span> Student(<span class="number">1L</span>,<span class="string">"张三"</span>,<span class="number">22</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"student"</span>,student);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;%@ page isELIgnored=<span class="string">"false"</span> %&gt;</span><br><span class="line">&lt;%@ taglib prefix=<span class="string">"form"</span> uri=<span class="string">"http://www.springframework.org/tags/form"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;学生信息&lt;/h1&gt;</span><br><span class="line">    &lt;form:form modelAttribute=<span class="string">"student"</span>&gt;</span><br><span class="line">        学生ID：&lt;form:input path=<span class="string">"id"</span>/&gt;&lt;br/&gt;</span><br><span class="line">        学生姓名：&lt;form:input path=<span class="string">"name"</span>/&gt;&lt;br/&gt;</span><br><span class="line">        学生年龄：&lt;form:input path=<span class="string">"age"</span>/&gt;&lt;br/&gt;</span><br><span class="line">        &lt;input type=<span class="string">"submit"</span> value=<span class="string">"提交"</span>/&gt;</span><br><span class="line">    &lt;/form:form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>JSP 页面导入 Spring MVC 表单标签库，与导入 JSTL 标签库的语法非常相似，前缀 prefix 可以自定义，通常定义为 form</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=<span class="string">"form"</span> uri=<span class="string">"http://www.springframework.org/tags/form"</span> %&gt;</span><br></pre></td></tr></table></figure>
+<p>将 form 表单与模型数据进行绑定，通过 modelAttribute 属性完成绑定，将 modelAttribute 的值设置为模型数据对应的 key 值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Handeler:modelAndView.addObject(<span class="string">"student"</span>,student);</span><br><span class="line">JSP:&lt;form:form modelAttribute=<span class="string">"student"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>form 表单完成绑定之后，将模型数据的值取出绑定到不同的标签中，通过设置标签的 path 属性完成，将 path 属性的值设置为模型数据对应的属性名即可</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">学生ID：&lt;form:input path=<span class="string">"id"</span>/&gt;&lt;br/&gt;</span><br><span class="line">学生姓名：&lt;form:input path=<span class="string">"name"</span>/&gt;&lt;br/&gt;</span><br><span class="line">学生年龄：&lt;form:input path=<span class="string">"age"</span>/&gt;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="常用表单标签库">常用表单标签库</h3>
+<ul>
+<li>
+<p>form</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form:from modelAttribute=<span class="string">"student"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染的是 HTML 中的<code>&lt;form&gt;&lt;/from&gt;</code>，通过 modelAttribute 属性绑定具体的模型数据</p>
+</li>
+<li>
+<p>input</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form:input path=<span class="string">"name"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染的是 HTML 中的 <code>&lt;input type=&quot;text&quot;/&gt;</code>，form 标签绑定的是模型数据，input 标签绑定的是模型数据中的属性值，通过 path 属性可以与模型数据中的属性名对应，并且支持及联操作</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form:input path=<span class="string">"address.name"</span>/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>password</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form:password path=<span class="string">"password"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染的是 HTML 中的 <code>&lt;input type=&quot;password&quot;/&gt;</code>，通过 path 属性与模型数据的属性值进行绑定，password 标签的值不会在页面显示</p>
+</li>
+<li>
+<p>checkbox</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form:checkbox path=<span class="string">"hobby"</span> value=<span class="string">"读书"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">student.setFlag(<span class="keyword">false</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">checkbox：&lt;form:checkbox path="flag" value="flag"&gt;&lt;/form:checkbox&gt;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染的是 HTML 中的 <code>&lt;input type=&quot;checkbox&quot;/&gt;</code>，通过 path 与模型数据的属性值进行绑定，可以绑定 boolean、数组和集合。</p>
+<p>如果绑定 boolean 值，若该变量的值为 true，则表示该复选框选中，否则表示不选中。</p>
+<p>如果绑定数组或者集合，数组/集合中的元素等于 checkbox 的 value 值，则选中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">student.setHobby(Arrays.asList(<span class="string">"读书"</span>,<span class="string">"看电影"</span>,<span class="string">"玩游戏"</span>));</span><br><span class="line">modelAndView.addObject(<span class="string">"student"</span>,student);</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">爱好：&lt;form:checkbox path="hobby" value="摄影"&gt;&lt;/form:checkbox&gt;摄影&lt;br/&gt;</span><br><span class="line">&lt;form:checkbox path="hobby" value="读书"&gt;&lt;/form:checkbox&gt;读书&lt;br/&gt;</span><br><span class="line">&lt;form:checkbox path="hobby" value="听音乐"&gt;&lt;/form:checkbox&gt;听音乐&lt;br/&gt;</span><br><span class="line">&lt;form:checkbox path="hobby" value="看电影"&gt;&lt;/form:checkbox&gt;看电影&lt;br/&gt;</span><br><span class="line">&lt;form:checkbox path="hobby" value="旅游"&gt;&lt;/form:checkbox&gt;旅游&lt;br/&gt;</span><br><span class="line">&lt;form:checkbox path="hobby" value="玩游戏"&gt;&lt;/form:checkbox&gt;玩游戏&lt;br/&gt;</span><br><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"提交"</span>/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>checkboxes</p>
+</li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form:checkboxes items=$&#123;student.hobby&#125; path=<span class="string">"selecHobby"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染的是 HTML 中的一组 <code>&lt;input type=&quot;checkbox&quot;/&gt;</code>，是对 <code>&lt;form:checkbox/&gt;</code> 的一种简化，需要结合 items 和 path 属性来使用，items 绑定被遍历的集合或数组，path 绑定被选中的集合或数组，可以这样理解，items 为全部可选集合，path 为默认的选中集合。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">student.setHobby(Arrays.asList(<span class="string">"摄影"</span>,<span class="string">"读书"</span>,<span class="string">"听音乐"</span>,<span class="string">"看电影"</span>,<span class="string">"旅游"</span>,<span class="string">"玩游戏"</span>));</span><br><span class="line">student.setSelectHobby(Arrays.asList(<span class="string">"摄影"</span>,<span class="string">"读书"</span>,<span class="string">"听音乐"</span>));</span><br><span class="line">modelAndView.addObject(<span class="string">"student"</span>,student);</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">爱好：&lt;form:checkboxes path=<span class="string">"selectHobby"</span> items=<span class="string">"$&#123;student.hobby&#125;"</span>/&gt;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是 path 可以直接绑定模型数据的属性值，items 则需要通过 EL 表达式的形式从域对象中获取数据，不能直接写属性名。</p>
+<ul>
+<li>rabiobutton</li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;from:radiobutton path=<span class="string">"radioId"</span> value=<span class="string">"0"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染的是 HTML 中的一个 <code>&lt;input type=&quot;radio&quot;/&gt;</code>，绑定的数据与标签的 value 值相等则为选中，否则不选中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">student.setRadioId(<span class="number">1</span>);</span><br><span class="line">modelAndView.addObject(<span class="string">"student"</span>,student);</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">radiobutton:&lt;form:radiobutton path=<span class="string">"radioId"</span> value=<span class="string">"1"</span>/&gt;radiobutton&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>radiobuttons</li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form:radiobuttons itmes=<span class="string">"$&#123;student.grade&#125;"</span> path=<span class="string">"selectGrade"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染的是 HTML 中的一组 <code>&lt;input type=&quot;radio&quot;/&gt;</code>，这里需要结合 items 和 path 两个属性来使用，items 绑定被遍历的集合或数组，path 绑定被选中的值，items 为全部的可选类型，path 为默认选中的选项，用法与 <code>&lt;form:checkboxes/&gt;</code> 一致。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer,String&gt; gradeMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">gradeMap.put(<span class="number">1</span>,<span class="string">"一年级"</span>);</span><br><span class="line">gradeMap.put(<span class="number">2</span>,<span class="string">"二年级"</span>);</span><br><span class="line">gradeMap.put(<span class="number">3</span>,<span class="string">"三年级"</span>);</span><br><span class="line">gradeMap.put(<span class="number">4</span>,<span class="string">"四年级"</span>);</span><br><span class="line">gradeMap.put(<span class="number">5</span>,<span class="string">"五年级"</span>);</span><br><span class="line">gradeMap.put(<span class="number">6</span>,<span class="string">"六年级"</span>);</span><br><span class="line">student.setGradeMap(gradeMap);</span><br><span class="line">student.setSelectGrade(<span class="number">3</span>);</span><br><span class="line">modelAndView.addObject(<span class="string">"student"</span>,student);</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">学生年级：&lt;form:radiobuttons items=<span class="string">"$&#123;student.gradeMap&#125;"</span> path=<span class="string">"selectGrade"</span>/&gt;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>select</li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form:select items=<span class="string">"$&#123;student.citys&#125;"</span> path=<span class="string">"selectCity"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>渲染的是 HTML 中的一个 <code>&lt;select/&gt;</code> 标签，需要结合 items 和 path 两个属性来使用，items 绑定被遍历的集合或数组，path 绑定被选中的值，用法与 <code>&lt;from:radiobuttons/&gt;</code>一致。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer,String&gt; cityMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">cityMap.put(<span class="number">1</span>,<span class="string">"北京"</span>);</span><br><span class="line">cityMap.put(<span class="number">2</span>,<span class="string">"上海"</span>);</span><br><span class="line">cityMap.put(<span class="number">3</span>,<span class="string">"广州"</span>);</span><br><span class="line">cityMap.put(<span class="number">4</span>,<span class="string">"深圳"</span>);</span><br><span class="line">student.setCityMap(cityMap);</span><br><span class="line">student.setSelectCity(<span class="number">3</span>);</span><br><span class="line">modelAndView.addObject(<span class="string">"student"</span>,student);</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">所在城市：&lt;form:select items="$&#123;student.cityMap&#125;" path="selectCity"&gt;&lt;/form:select&gt;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>options</li>
+</ul>
+<p><code>form:select</code> 结合 <code>form:options</code> 的使用，<code>from:select</code> 只定义 path 属性，在 <code>form:select</code> 标签内部添加一个子标签 <code>form:options</code> ，设置 items 属性，获取被遍历的集合。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">所在城市：&lt;form:select path=<span class="string">"selectCity"</span>&gt;</span><br><span class="line">  				&lt;form:options items="$&#123;student.cityMap&#125;"&gt;&lt;/form:options&gt;</span><br><span class="line">				&lt;/form:select&gt;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>option</p>
+<p><code>form:select</code> 结合 <code>form:option</code> 的使用，<code>from:select</code> 定义 path 属性，给每一个 <code>form:option</code> 设置 value 值，path 的值与哪个 value 值相等，该项默认选中。</p>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">所在城市：&lt;form:select path=<span class="string">"selectCity"</span>&gt;</span><br><span class="line">            &lt;form:option value="1"&gt;杭州&lt;/form:option&gt;</span><br><span class="line">            &lt;form:option value="2"&gt;成都&lt;/form:option&gt;</span><br><span class="line">            &lt;form:option value="3"&gt;西安&lt;/form:option&gt;</span><br><span class="line">        &lt;/form:select&gt;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>textarea</li>
+</ul>
+<p>渲染的是 HTML 中的一个 <code>&lt;textarea/&gt;</code> ，path 绑定模型数据的属性值，作为文本输入域的默认值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">student.setIntroduce(<span class="string">"你好，我是..."</span>);</span><br><span class="line">modelAndView.addObject(<span class="string">"student"</span>,student);</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">信息：&lt;form:textarea path=<span class="string">"introduce"</span>/&gt;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>errors</li>
+</ul>
+<p>处理错误信息，一般用在数据校验，该标签需要结合 Spring MVC 的验证器结合起来使用</p>
+<h3 id="Spring-MVC-数据校验">Spring MVC 数据校验</h3>
+<p>Spring MVC 提供了两种数据校验的方式：1、基于 Validator 接口。2、使用 Annotation JSR - 303 标准进行校验。</p>
+<p>基于 Validator 接口的方式需要自定义 Validator 验证器，每一条数据的验证规则需要开发者手动完成，使用 Annotation JSR - 303 标准则不需要自定义验证器，通过注解的方式可以直接在实体类中添加每个属性的验证规则，这种方式更加方便，实际开发中推荐使用</p>
+<ul>
+<li>
+<p>基于Validator接口</p>
+<ul>
+<li>
+<p>Jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;%@ page isELIgnored=<span class="string">"false"</span> %&gt;</span><br><span class="line">&lt;%@ taglib prefix=<span class="string">"form"</span> uri=<span class="string">"http://www.springframework.org/tags/form"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form:form modelAttribute=<span class="string">"account"</span> action=<span class="string">"/validator/login"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">        姓名：&lt;form:input path="name"/&gt;&lt;form:errors path="name"&gt;&lt;/form:errors&gt;&lt;br/&gt;</span><br><span class="line">        密码：&lt;form:input path="password"/&gt;&lt;form:errors path="password"&gt;&lt;/form:errors&gt;&lt;br/&gt;</span><br><span class="line">        &lt;input type=<span class="string">"submit"</span> value=<span class="string">"登录"</span>/&gt;</span><br><span class="line">    &lt;/form:form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>实体类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.litao.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>自定义验证器 AccountValidator，实现 Validator 接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.southwind.entity.Account;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.Errors;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.ValidationUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.Validator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountValidator</span> <span class="keyword">implements</span> <span class="title">Validator</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Class&lt;?&gt; aclass)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Account<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">aclass</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">validate</span><span class="params">(Object o, Errors errors)</span> </span>&#123;</span><br><span class="line">        ValidationUtils.rejectIfEmpty(errors,<span class="string">"name"</span>,<span class="keyword">null</span>,<span class="string">"姓名不能为空"</span>);</span><br><span class="line">        ValidationUtils.rejectIfEmpty(errors,<span class="string">"password"</span>,<span class="keyword">null</span>,<span class="string">"密码不能为空"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Handler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/validator"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ValidatorHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/login"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"account"</span>,<span class="keyword">new</span> Account());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/login"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(@Validated Account account, BindingResult bindingResult)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(bindingResult.hasErrors())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>springmvc.xml配置验证器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountValidator"</span> <span class="attr">class</span>=<span class="string">"com.litao.validator.AccountValidator"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">validator</span>=<span class="string">"accountValidator"</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Annotation JSR - 303 标准</p>
+<p>使用 Annotation JSR - 303 标准进行验证，需要导入支持这种标准的依赖 jar 文件，这里我使用 Hibernate Validator</p>
+<ul>
+<li>导入依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- JSR-303 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-validator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.6.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.validation<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>validation-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.1.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.jboss.logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jboss-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3.2.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过注解的方式直接在实体类中添加相关的验证规则</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.validator.constraints.Email;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.validator.constraints.NotEmpty;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Pattern;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Size;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="meta">@NotEmpty</span>(message = <span class="string">"用户名不能为空"</span>)</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="meta">@Size</span>(min = <span class="number">6</span>,max = <span class="number">12</span>,message = <span class="string">"密码6-12位"</span>)</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="meta">@Email</span>(regexp = <span class="string">"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\\\.[a-zA-Z0-9-]+)*\\\\.[a-zA-Z0-9]&#123;2,6&#125;$"</span>,message = <span class="string">"请输入正确的邮箱格式"</span>)</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="meta">@Pattern</span>(regexp = <span class="string">"^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\\\\\\\d&#123;8&#125;$"</span>,message = <span class="string">"请输入正确的电话"</span>)</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ValidatorHandler</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/register"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">register</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"person"</span>,<span class="keyword">new</span> Person());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"register"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/register"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">register</span><span class="params">(@Valid Person person, BindingResult bindingResult)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(bindingResult.hasErrors())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"register"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>springmvc.xml</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Jsp</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">contentType</span>=<span class="string">"text/html;charset=UTF-8"</span> <span class="attr">language</span>=<span class="string">"java"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">isELIgnored</span>=<span class="string">"false"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">prefix</span>=<span class="string">"form"</span> <span class="attr">uri</span>=<span class="string">"http://www.springframework.org/tags/form"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form:form</span> <span class="attr">modelAttribute</span>=<span class="string">"person"</span> <span class="attr">action</span>=<span class="string">"/validator/register2"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">        用户名：<span class="tag">&lt;<span class="name">form:input</span> <span class="attr">path</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;/<span class="name">form:input</span>&gt;</span><span class="tag">&lt;<span class="name">form:errors</span> <span class="attr">path</span>=<span class="string">"username"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        密码：<span class="tag">&lt;<span class="name">form:password</span> <span class="attr">path</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;/<span class="name">form:password</span>&gt;</span><span class="tag">&lt;<span class="name">form:errors</span> <span class="attr">path</span>=<span class="string">"password"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        邮箱：<span class="tag">&lt;<span class="name">form:input</span> <span class="attr">path</span>=<span class="string">"email"</span>&gt;</span><span class="tag">&lt;/<span class="name">form:input</span>&gt;</span><span class="tag">&lt;<span class="name">form:errors</span> <span class="attr">path</span>=<span class="string">"email"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        电话：<span class="tag">&lt;<span class="name">form:input</span> <span class="attr">path</span>=<span class="string">"phone"</span>&gt;</span><span class="tag">&lt;/<span class="name">form:input</span>&gt;</span><span class="tag">&lt;<span class="name">form:errors</span> <span class="attr">path</span>=<span class="string">"phone"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form:form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>校验规则详解：</p>
+<p>@Null					被注解的元素必须为null</p>
+<p>@NotNull				  被注解的元素不能为null</p>
+<p>@Min(value)			     被注解的元素必须是一个数字，其值必须大于等于指定的最小值</p>
+<p>@Max(value)			    被注解的元素必须是一个数字，其值必须小于于等于指定的最大值</p>
+<p>@Email				     被注解的元素必须是电子邮箱地址</p>
+<p>@Pattern				  被注解的元素必须符合对应的正则表达式</p>
+<p>@Length				   被注解的元素的大小必须在指定的范围内</p>
+<p>@NotEmpty			      被注解的字符串的值必须非空</p>
+<p>Null 和 Empty 是不同的结果，String str = null，str 是 null，String str = “”，str 不是 null，其值为空</p>
 </li>
 </ul>
 
@@ -273,7 +550,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            17
+                            18
                         </p>
                     </a>
                 </div>
@@ -297,7 +574,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            8
+                            9
                         </p>
                     </a>
                 </div>
@@ -326,6 +603,26 @@
         <a class="is-flex" href="#Spring-MVC-自定义数据转换器">
         <span class="has-mr-6">1</span>
         <span>Spring MVC 自定义数据转换器</span>
+        </a></li><li>
+        <a class="is-flex" href="#Spring-MVC-Rest">
+        <span class="has-mr-6">2</span>
+        <span>Spring MVC Rest</span>
+        </a></li><li>
+        <a class="is-flex" href="#Spring-MVC文件上传下载">
+        <span class="has-mr-6">3</span>
+        <span>Spring MVC文件上传下载</span>
+        </a></li><li>
+        <a class="is-flex" href="#Spring-MVC表单标签库">
+        <span class="has-mr-6">4</span>
+        <span>Spring MVC表单标签库</span>
+        </a></li><li>
+        <a class="is-flex" href="#常用表单标签库">
+        <span class="has-mr-6">5</span>
+        <span>常用表单标签库</span>
+        </a></li><li>
+        <a class="is-flex" href="#Spring-MVC-数据校验">
+        <span class="has-mr-6">6</span>
+        <span>Spring MVC 数据校验</span>
         </a></li></ul>
             </div>
         </div>
@@ -358,6 +655,17 @@
                     </span>
                     <span class="level-right">
                         <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://mvnrepository.com" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Maven仓库</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">mvnrepository.com</span>
                     </span>
                 </a>
             </li>
@@ -411,7 +719,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/IDEA/" style="font-size: 20px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/MyBatis/" style="font-size: 20px;">MyBatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Servlet-Jsp/" style="font-size: 20px;">Servlet Jsp</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Spring-MVC/" style="font-size: 20px;">Spring MVC</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+        <a href="/tags/IDEA/" style="font-size: 20px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/MyBatis/" style="font-size: 20px;">MyBatis</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Servlet-Jsp/" style="font-size: 20px;">Servlet Jsp</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Spring-MVC/" style="font-size: 20px;">Spring MVC</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a>
     </div>
 </div>
     
@@ -502,18 +810,18 @@
         
         <article class="media">
             
-            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+            <a href="/2019/06/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="设计模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-10T06:25:46.000Z">2019-06-10</time></div>
+                    <a href="/2019/06/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">设计模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                        
                     </p>
                 </div>
             </div>
@@ -545,6 +853,17 @@
             <a class="level is-marginless" href="/archives/2020/01/">
                 <span class="level-start">
                     <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -650,6 +969,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
                         <span class="tag">数据库连接池</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="tag">设计模式</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -754,18 +1080,18 @@
         
         <article class="media">
             
-            <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="media-left">
+            <a href="/2019/06/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Mybatis框架学习三">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="设计模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T10:40:54.000Z">2019-05-19</time></div>
-                    <a href="/2019/05/19/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E4%B8%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mybatis框架学习三</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-10T06:25:46.000Z">2019-06-10</time></div>
+                    <a href="/2019/06/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">设计模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                        
                     </p>
                 </div>
             </div>
@@ -797,6 +1123,17 @@
             <a class="level is-marginless" href="/archives/2020/01/">
                 <span class="level-start">
                     <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -902,6 +1239,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
                         <span class="tag">数据库连接池</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="tag">设计模式</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
