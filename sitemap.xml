@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/</loc>
+    
+    <lastmod>2020-05-08T04:45:56.705Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/04/29/Docker%E4%B8%8B%E5%AE%89%E8%A3%85FastDFS/</loc>
     
     <lastmod>2020-05-02T06:43:15.274Z</lastmod>
@@ -117,13 +124,6 @@
     <loc>http://yoursite.com/2019/02/21/JDBC%E5%AD%A6%E4%B9%A0/</loc>
     
     <lastmod>2020-03-16T13:12:06.581Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/17/Intellij-IDEA-%E5%AE%89%E8%A3%85/</loc>
-    
-    <lastmod>2020-03-16T13:11:45.542Z</lastmod>
     
   </url>
   
